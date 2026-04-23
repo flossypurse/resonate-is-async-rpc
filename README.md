@@ -1,3 +1,11 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/banner-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/banner-light.png">
+    <img alt="Async RPC — Resonate example" src="./assets/banner-dark.png">
+  </picture>
+</p>
+
 # Async RPC | Resonate example application
 
 This example application showcases Resonate's Async RPC capabilities with three different request flows.
