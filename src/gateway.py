@@ -22,7 +22,7 @@ def await_chain_route_handler():
     try:
         print("running await_chain_route_handler")
         promise_id = "await-chain"
-        handle = resonate.options(target="poll://service-a").rpc(promise_id, "foo")
+        handle = resonate.options(target="poll://service-a").begin_rpc(promise_id, "foo")
         print("waiting on result")
         message = handle.result()
         return jsonify({"message": message}), 200
@@ -36,7 +36,7 @@ def detached_chain_route_handler():
     try:
         print("running detached_chain_route_handler")
         promise_id = "detached-chain"
-        resonate.options(target="poll://service-d").rpc(promise_id, "qux", 1)
+        resonate.options(target="poll://service-d").begin_rpc(promise_id, "qux", 1)
         message = "detached-chain started"
         return jsonify({"message": message}), 200
     except Exception as e:
@@ -49,7 +49,7 @@ def fan_out_workflow_route_handler():
     try:
         print("running fan-out-workflow_route_handler")
         promise_id = "fan-out-workflow"
-        handle = resonate.options(target="poll://service-g").rpc(promise_id, "zim", 1)
+        handle = resonate.options(target="poll://service-g").begin_rpc(promise_id, "zim", 1)
         print("waiting on result")
         message = handle.result()
         return jsonify({"message": message}), 200
