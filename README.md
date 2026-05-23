@@ -6,6 +6,12 @@
   </picture>
 </p>
 
+<p align="center">
+  <a href="https://resonatehq.github.io/examples-ci/">
+    <img src="https://img.shields.io/endpoint?url=https://resonatehq.github.io/examples-ci/status/example-async-rpc-py.json" alt="examples-ci status">
+  </a>
+</p>
+
 # Async RPC | Resonate example application
 
 This example application showcases Resonate's Async RPC capabilities with three different request flows.
