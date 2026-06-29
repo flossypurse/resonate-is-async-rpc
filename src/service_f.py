@@ -1,32 +1,29 @@
-from resonate.message_sources.poller import Poller
-from resonate.stores.remote import RemoteStore
+from __future__ import annotations
+
+import asyncio
+import os
+from typing import TYPE_CHECKING
+
 from resonate.resonate import Resonate
-from threading import Event
-import uuid
+
+if TYPE_CHECKING:
+    from resonate.context import Context
 
 
-app_node_id = str(uuid.uuid4())
-app_node_group = "service-f"
-
-resonate = Resonate(
-    store=RemoteStore(host="http://localhost", port="8001"),
-    message_source=Poller(
-        host="http://localhost", port="8002", id=app_node_id, group=app_node_group
-    ),
-)
-
-
-@resonate.register
-def cog(_, arg):
+async def cog(ctx: Context, arg: int) -> None:
     print("running function cog")
     print(arg)
 
 
-def main():
-    resonate.start()
-    print("service e is running")
-    Event().wait()
+async def main() -> None:
+    r = Resonate(
+        url=os.environ.get("RESONATE_URL", "http://localhost:8001"),
+        group="service-f",
+    )
+    r.register(cog)
+    print("service e is running", flush=True)
+    await asyncio.Event().wait()
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())

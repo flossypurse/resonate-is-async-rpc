@@ -7,7 +7,7 @@ authors = [
 ]
 dependencies = [
     "flask>=3.1.0",
-    "resonate-sdk>=0.6.7"
+    "resonate-sdk>=0.7.0"
 ]
 
 readme = "README.md"
